@@ -1,22 +1,15 @@
-import { count } from 'console';
-import { useState } from 'react';
 import './App.css';
+import { BookList } from './components/BookList';
+import { books } from './data/books';
 
-import { Counter, OnValueChanged } from './components/Counter';
-import { SimpleName } from './components/SimpleName';
 
 function App() {
 
-  const [value, setValue] = useState(33);
-
-  const onCounterValueChanged: OnValueChanged = (currentValue: number) => setValue(currentValue);
 
   return (
     <div className="App">
-      <h1>Hello Workshop</h1>
-      <SimpleName />
-      <Counter value={value} onValueChanged={onCounterValueChanged} />
-      <div>Counter value: {value}</div>
+      <h1>Bookmanager</h1>
+      <BookList books={books} />      
     </div>
   );
 }
