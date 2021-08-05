@@ -15,7 +15,7 @@ function App() {
     <div className="App">
       <h1>Hello Workshop</h1>
       <SimpleName />
-      <Counter initialValue={value} onValueChanged={onCounterValueChanged} />
+      <Counter value={value} onValueChanged={onCounterValueChanged} />
       <div>Counter value: {value}</div>
     </div>
   );

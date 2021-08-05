@@ -1,31 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 export interface OnValueChanged {
   (currentValue: number): void;
 }
 
 export interface CounterProps {
-  initialValue?: number;
-  onValueChanged?: OnValueChanged;
+  value: number;
+  onValueChanged: OnValueChanged;
 }
 
-export const noop = () => {};
 
-export const Counter: React.FC<CounterProps> = ({ initialValue = 100, onValueChanged = noop}) => {
-
-  const [count, setCount] = useState(initialValue);
-
+export const Counter: React.FC<CounterProps> = ({ value, onValueChanged}) => {
 
   const increment = () => {
-    const newCount = count + 1;
-    setCount(newCount);
-    onValueChanged(newCount);
+    onValueChanged(value + 1);
   };
 
   const decrement = () => {
-    const newCount = count - 1;
-    setCount(newCount);
-    onValueChanged(newCount);
+    onValueChanged(value - 1);
   };
 
   return (
@@ -33,7 +25,7 @@ export const Counter: React.FC<CounterProps> = ({ initialValue = 100, onValueCha
       <button onClick={decrement}>
         -
       </button>
-      {count}
+      {value}
       <button onClick={increment}>
         +
       </button>
