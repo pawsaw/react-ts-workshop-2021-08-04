@@ -1,17 +1,18 @@
 import { useState, useEffect } from 'react';
 import { Book } from './Book';
+import { useBookService } from './BookService';
 
 export function useBooks(): Book[] | null {
+  const bookService = useBookService();
   const [books, setBooks] = useState<Book[] | null>(null);
   useEffect(() => {
 
     (async () => {
       setBooks(null);
-      const response = await fetch(`http://localhost:4730/books`);
-      const _books = await response.json();
+      const _books = await bookService.books();
       setBooks(_books);
     })()
 
-  }, []);
+  }, [bookService]);
   return books;
 }

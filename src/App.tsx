@@ -1,7 +1,7 @@
 import './App.css';
 import { BookDetail } from './components/BookDetail';
 import { BookList } from './components/BookList';
-import { Book, useBook, useBooks } from './domain';
+import { Book, useBook, useBooks } from './domain/books';
 
 
 
