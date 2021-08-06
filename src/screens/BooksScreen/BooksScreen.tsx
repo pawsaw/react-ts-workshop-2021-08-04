@@ -1,26 +1,22 @@
 import React from 'react';
-import { BookDetail } from '../../components/BookDetail';
-import { BookList } from '../../components/BookList';
-import { Book, useBooks, useBook } from '../../domain';
+import { BookList, OnBookSelected } from './BookList';
+import { Book, useBooks } from '../../domain';
+import { useHistory } from 'react-router-dom';
 
 export const BooksScreen: React.FC = () => {
 
   const books: Book[] | null = useBooks();
-  const book: Book | null = useBook('978-0-20163-361-0');
+  const history = useHistory();
+
+  const onBookSelected: OnBookSelected = (book: Book) => {
+    history.push(`/books/${book.isbn}`);
+  };
 
   return <div>
     <h2>Bookmanager</h2>
     {
         books ? (
-          <BookList books={books} />
-        ) : (
-          <span>Loading book...</span>
-        )
-      }
-      
-      {
-        book ? (
-          <BookDetail book={book} />
+          <BookList books={books} onBookSelected={onBookSelected} />
         ) : (
           <span>Loading book...</span>
         )
